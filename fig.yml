@@ -1,0 +1,15 @@
+web:
+  build: .
+  command: lein ring server-headless
+  volumes:
+   - .:/app
+  ports:
+   - "3000:3000"
+  environment:
+   - DATABASE_URL=postgresql://db/postgres?user=postgres
+  links:
+   - db
+db:
+  image: postgres
+  ports:
+   - "5432"

@@ -1,0 +1,37 @@
+{% extends "templates/base.html" %}
+{% block content %}
+  <h2>Add a disc to collection</h2>
+  <form action="/discs" method="POST">
+    <input type="hidden" name="__anti-forgery-token" value="{{csrf-token}}" />
+    <div class="form-group col-lg-3">
+      <label for="id">Title</label>
+      {% if errors.title %}
+        <div class="alert alert-danger">{{errors.title}}</div>
+      {% endif %}
+      <p>
+        <input class="form-control" id="title" name="title"
+               tabindex="1" type="text" value="{{disc.title}}" />
+      </p>
+      <label for="id">Artist</label>
+      {% if errors.artist %}
+        <div class="alert alert-danger">{{errors.artist}}</div>
+      {% endif %}
+      <p>
+        <input class="form-control" id="artist" name="artist"
+               tabindex="1" type="text" value="{{disc.artist}}" />
+      </p>
+      {% if errors.state %}
+        <div class="alert alert-danger">{{errors.state}}</div>
+      {% endif %}
+      <label for="state">State</label>
+      <p>
+        <select name="state" id="state">
+          <option value="have">I have it</option>
+          <option value="want">I want it</option>
+          <option value="dont-want">I don't want it</option>
+        </select>
+      </p>
+      <input class="btn" tabindex="4" type="submit" value="Add" />
+    </div>
+  </form>
+{% endblock %}

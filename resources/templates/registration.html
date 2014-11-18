@@ -1,0 +1,33 @@
+{% extends "templates/base.html" %}
+{% block menu %}
+{% endblock %}
+{% block content %}
+<form action="/register" method="POST">
+  <input type="hidden" name="__anti-forgery-token" value="{{csrf-token}}" />
+  <div class="form-group col-lg-3">
+    <label for="id">user id</label>
+    {% if errors.id %}
+      <div class="alert alert-danger">{{errors.id}}</div>
+    {% endif %}
+    <p>
+      <input class="form-control" id="id" name="id" tabindex="1" type="text" value="{{id}}" />
+    </p>
+    <label for="pass">password</label>
+    {% if errors.pass %}
+      <div class="alert alert-danger">{{errors.pass}}</div>
+    {% endif %}
+    <p>
+      <input class="form-control" id="pass" name="pass" tabindex="2" type="password" />
+    </p>
+    <label for="pass1">retype password</label>
+    {% if errors.pass1 %}
+      <div class="alert alert-danger">{{errors.pass1}}</div>
+    {% endif %}
+    <p>
+      <input class="form-control" id="pass1" name="pass1" tabindex="3" type="password" />
+    </p>
+    <input class="btn" tabindex="4" type="submit" value="create account">
+  </div>
+</form>
+{% endblock %}
+

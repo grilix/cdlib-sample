@@ -1,0 +1,21 @@
+{% extends "templates/base.html" %}
+{% block content %}
+  <h2>My collection</h2>
+  <table class="discs table">
+    <tr><th>State</th><th>Title</th><th>Artist</th></tr>
+    {% for disc in collection %}
+      <tr class="disc--{{disc.state}}"><td>
+          {% ifequal disc.state "have" %}
+          I have it
+          {% else %}
+            {% ifequal disc.state "want" %}
+            I want it
+            {% else %}
+            I don't want it
+            {% endifequal %}
+          {% endifequal %}
+      </td><td>{{disc.title}}</td><td>{{disc.artist}}</td></tr>
+    {% endfor %}
+  </table>
+  <a href="/discs/new">Add</a>
+{% endblock %}
