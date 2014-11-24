@@ -7,7 +7,7 @@
                  [org.clojars.grilix/formant "0.1.0"]
                  [nav "0.2.0"]
                  [crypto-password "0.1.3"]
-                 [selmer "0.7.2"]
+                 [selmer "0.7.4"]
                  [org.postgresql/postgresql "9.3-1102-jdbc41"]
                  [korma "0.4.0"]
                  [org.clojure/clojure "1.6.0"]
