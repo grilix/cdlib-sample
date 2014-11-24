@@ -16,7 +16,7 @@
       (assoc (ring/redirect-after-post "/")
               :session {:user-id (get-in result [:data :id])})
       (layout/render
-        "registration.html" {:id (params :id "")
+        "registration.html" {:id (params "id" "")
                              :csrf-token (session :__anti-forgery-token)
                              :errors (result :data-errors)}))))
 

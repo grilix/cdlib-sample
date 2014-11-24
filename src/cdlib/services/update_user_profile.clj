@@ -1,19 +1,19 @@
 (ns cdlib.services.update-user-profile
-  (:use [formar.core :refer [defform email pattern required]])
-  (:require [cdlib.db.user :as db]))
+  (:require [cdlib.db.user :as db]
+            [formant.core :as formant]
+            [formant.validators :as validators]))
 
-(defform validate
-  [[[:email (email :message "Enter a valid email")]
-    [:first-name (required :message "Enter your name")]
-    [:last-name (required :message "Enter your last name")]]])
+(def data-validators
+  [[:email (validators/email :message "Enter a valid email")]
+   [:first-name (validators/required :message "Enter your name")]
+   [:last-name (validators/required :message "Enter your last name")]])
 
 (defn update-user [data user-id]
-  (if (empty? (data :data-errors))
-    {:data (db/update-user user-id (data :data))
-    :data-errors {}}
+  (if (formant/valid? data)
+    (assoc data :data (db/update-user user-id (data :data)))
     data))
 
 (defn perform [params user-id]
   (-> params
-      validate
+      (formant/validate data-validators)
       (update-user user-id)))

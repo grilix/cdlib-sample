@@ -1,20 +1,23 @@
 (ns cdlib.services.create-disc
-  (:use [formar.core :refer [defform pattern required choice]])
-  (:require [cdlib.db.disc :as db]))
+  (:require [cdlib.db.disc :as db]
+            [formant.core :as formant]
+            [formant.validators :as validators]))
 
-(defform validate
-  [[[:title (required :message "Title is required")]
-    [:state (choice #{"want" "dont-want" "have"}
-                    :msg-fn (constantly "Is invalid"))]
-    [:artist (required :message "Artist is required")]]])
+(def data-validators
+  [[:title (validators/required :message "Title is required")]
+   [:state (validators/choice #{"want" "dont-want" "have"}
+                              :msg-fn (constantly "Is invalid"))]
+   [:artist (validators/required :message "Artist is required")]])
 
-(defn create-disc [data user-id]
-  (if (empty? (data :data-errors))
-    (db/create-disc (assoc (data :data)
-                           :user-id user-id))
-    data))
+(defn create-disc [user-id]
+  (fn [data]
+    (assoc data
+           :data (db/create-disc (assoc (data :data) :user-id user-id)))))
+
+(defn form-validators [user-id]
+  [(create-disc user-id)])
 
 (defn perform [params user-id]
-  (-> params
-      validate
-      (create-disc user-id)))
+  (formant/validate params
+                    data-validators
+                    (form-validators user-id)))
