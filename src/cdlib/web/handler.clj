@@ -1,9 +1,9 @@
-(ns cdlib.handler
+(ns cdlib.web.handler
   (:use nav.core)
-  (:require [cdlib.routes.home :refer [home-routes]]
-            [cdlib.routes.auth :refer [auth-routes]]
-            [cdlib.routes.user :refer [user-routes]]
-            [cdlib.routes.discs :refer [discs-routes]]
+  (:require [cdlib.web.routes.home :refer [home-routes]]
+            [cdlib.web.routes.auth :refer [auth-routes]]
+            [cdlib.web.routes.user :refer [user-routes]]
+            [cdlib.web.routes.discs :refer [discs-routes]]
             [ring.middleware.session.cookie :as cookie]
             [ring.middleware.session :refer [wrap-session]]
             [ring.middleware.stacktrace :refer [wrap-stacktrace-web]]
@@ -11,6 +11,11 @@
             [ring.middleware.resource :refer [wrap-resource]]
             [ring.middleware.anti-forgery :refer [wrap-anti-forgery]]
             [ring.util.response :as ring]))
+
+(defn wrap-auth [handler options]
+  (fn [request]
+    (println request)
+    (handler request)))
 
 (def app-routes
   (merge
@@ -25,6 +30,7 @@
 
 (def app
   (-> (combine-routes app-routes)
+      (wrap-auth {})
       wrap-anti-forgery
       wrap-params
       (wrap-session session-defaults)

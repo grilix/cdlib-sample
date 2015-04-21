@@ -1,5 +1,5 @@
-(ns cdlib.routes.home
-  (:require [cdlib.layout :as layout]))
+(ns cdlib.web.routes.home
+  (:require [cdlib.web.layout :as layout]))
 
 (defn home-page [{session :session}]
   (layout/render

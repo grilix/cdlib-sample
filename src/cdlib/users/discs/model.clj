@@ -1,8 +1,7 @@
-(ns cdlib.db.disc
+(ns cdlib.users.discs.model
   (:use [clojure.set :refer [rename-keys map-invert]])
   (:require [korma.core :as db]
-            [cdlib.db.user :as user]
-            [cdlib.db.core]))
+            [db.core]))
 
 (def fields-map
   {:user-id :user_id})
@@ -12,8 +11,7 @@
                 (rename-keys data fields-map)))
 
   (db/transform (fn [data]
-                  (rename-keys data (map-invert fields-map))))
-  (db/belongs-to user/users))
+                  (rename-keys data (map-invert fields-map)))))
 
 (defn create-disc [data]
   (db/insert discs

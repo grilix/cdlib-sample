@@ -1,4 +1,4 @@
-(ns cdlib.layout
+(ns cdlib.web.layout
   (:require [selmer.parser :as parser]
             [selmer.filters :as filters]
             [ring.util.response :refer [content-type response]]))

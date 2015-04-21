@@ -1,7 +1,7 @@
-(ns cdlib.routes.auth
-  (:require [cdlib.layout :as layout]
-            [cdlib.services.auth-user :as auth-user]
-            [cdlib.services.create-user :as create-user]
+(ns cdlib.web.routes.auth
+  (:require [cdlib.web.layout :as layout]
+            [cdlib.users.auth :as auth-user]
+            [cdlib.users.create :as create-user]
             [ring.util.response :as ring]))
 
 (defn handle-register [{session :session}]

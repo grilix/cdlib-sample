@@ -1,5 +1,5 @@
 (ns cdlib.repl
-  (:use cdlib.handler
+  (:use cdlib.web.handler
         ring.server.standalone
         [ring.middleware file-info file]))
 

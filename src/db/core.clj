@@ -1,4 +1,4 @@
-(ns cdlib.db.core
+(ns db.core
   (:use korma.db)
   (:require [clojure.string :as str]
             [ring.util.codec :as codec])

@@ -1,5 +1,5 @@
-(ns cdlib.services.get-user-profile
-  (:require [cdlib.db.user :as db]))
+(ns cdlib.users.get-profile
+  (:require [cdlib.users.model :as db]))
 
 (defn perform [id]
   (if-let [account (db/get-user id)]

@@ -1,7 +1,7 @@
-(ns cdlib.routes.discs
-  (:require [cdlib.layout :as layout]
-            [cdlib.services.create-disc :as create-disc]
-            [cdlib.services.get-user-collection :as get-user-collection]
+(ns cdlib.web.routes.discs
+  (:require [cdlib.web.layout :as layout]
+            [cdlib.users.discs.create :as create-disc]
+            [cdlib.users.discs.get-collection :as get-user-collection]
             [ring.util.response :as ring]))
 
 (defn handle-show-library [{session :session}]

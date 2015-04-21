@@ -1,5 +1,5 @@
-(ns cdlib.services.create-disc
-  (:require [cdlib.db.disc :as db]
+(ns cdlib.users.discs.create
+  (:require [cdlib.users.discs.model :as db]
             [formant.core :as formant]
             [formant.validators :as validators]))
 

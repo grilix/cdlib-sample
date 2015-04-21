@@ -10,4 +10,4 @@ Make sure you have these working:
 
 ## Running
 
-Pasting this on your terminal should do the work: `fig up`.
+Paste this on your terminal and you should be good to go: `fig up`.

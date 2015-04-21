@@ -1,5 +1,5 @@
-(ns cdlib.services.update-user-profile
-  (:require [cdlib.db.user :as db]
+(ns cdlib.users.update-profile
+  (:require [cdlib.users.model :as db]
             [formant.core :as formant]
             [formant.validators :as validators]))
 

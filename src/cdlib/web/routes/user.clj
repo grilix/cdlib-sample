@@ -1,7 +1,7 @@
-(ns cdlib.routes.user
-  (:require [cdlib.layout :as layout]
-            [cdlib.services.get-user-profile :as get-user-profile]
-            [cdlib.services.update-user-profile :as update-user-profile]
+(ns cdlib.web.routes.user
+  (:require [cdlib.web.layout :as layout]
+            [cdlib.users.get-profile :as get-user-profile]
+            [cdlib.users.update-profile :as update-user-profile]
             [ring.util.response :as ring]))
 
 (defn handle-profile [{session :session}]

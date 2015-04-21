@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ $1 == "rollback" ]]; then
+  lein run -m db.migrations/rollback
+else
+  lein run -m db.migrations/migrate
+fi

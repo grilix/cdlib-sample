@@ -1,6 +1,6 @@
-(ns cdlib.services.create-user
+(ns cdlib.users.create
   (:require [crypto.password.pbkdf2 :as password]
-            [cdlib.db.user :as db]
+            [cdlib.users.model :as db]
             [formant.core :as formant]
             [formant.validators :as validators]))
 

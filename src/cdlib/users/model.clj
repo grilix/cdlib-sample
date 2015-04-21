@@ -1,7 +1,7 @@
-(ns cdlib.db.user
+(ns cdlib.users.model
   (:use [clojure.set :refer [rename-keys map-invert]])
   (:require [korma.core :as db]
-            [cdlib.db.core]))
+            [db.core]))
 
 (def fields-map
   {:first-name :first_name
