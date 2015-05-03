@@ -1,6 +1,6 @@
 {% extends "templates/base.html" %}
 {% block content %}
-  <h2>User details for {{user.id}}</h2>
+  <h2>User details for {{data.id}}</h2>
   <form action="/update-profile" method="POST">
     <input type="hidden" name="__anti-forgery-token" value="{{csrf-token}}" />
     <div class="form-group col-lg-3">
@@ -10,7 +10,7 @@
       {% endif %}
       <p>
         <input class="form-control" id="first-name" name="first-name"
-               tabindex="0" type="text" value="{{user.first-name}}" />
+               tabindex="0" type="text" value="{{data.first-name}}" />
       </p>
       <label for="id">last name</label>
       {% if errors.last-name %}
@@ -18,7 +18,7 @@
       {% endif %}
       <p>
         <input class="form-control" id="last-name" name="last-name"
-               tabindex="0" type="text" value="{{user.last-name}}" />
+               tabindex="0" type="text" value="{{data.last-name}}" />
       </p>
       <label for="id">email</label>
       {% if errors.email %}
@@ -26,7 +26,7 @@
       {% endif %}
       <p>
         <input class="form-control" id="email" name="email" tabindex="1"
-               type="text" value="{{user.email}}" />
+               type="text" value="{{data.email}}" />
       </p>
       <input class="btn" tabindex="4" type="submit" value="update profile">
     </div>

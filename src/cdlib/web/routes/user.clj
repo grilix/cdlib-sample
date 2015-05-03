@@ -7,11 +7,7 @@
 (defn handle-profile [{session :session}]
   (let [result (get-user-profile/perform (session :user-id))]
     (if (empty? (result :data-errors))
-      (layout/render
-        "user/profile.html" {:user (result :data)
-                             :user-id (session :user-id)
-                             :csrf-token (session :__anti-forgery-token)
-                             :errors {}})
+      (layout/render "user/profile.html" (layout/default-params session result))
       (ring/redirect "/"))))
 
 (defn handle-update-profile [{params :form-params
@@ -19,11 +15,8 @@
   (let [result (update-user-profile/perform params (session :user-id))]
     (if (empty? (result :data-errors))
       (ring/redirect-after-post "/profile")
-      (layout/render
-        "user/profile.html" {:user (result :data)
-                             :user-id (session :user-id)
-                            :csrf-token (session :__anti-forgery-token)
-                             :errors (result :data-errors)}))))
+      (layout/render "user/profile.html"
+                     (layout/default-params session result)))))
 
 (def user-routes
   {[:get "/profile"] handle-profile

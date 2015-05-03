@@ -5,9 +5,7 @@
             [ring.util.response :as ring]))
 
 (defn handle-register [{session :session}]
-  (layout/render "registration.html" {:id ""
-                                      :csrf-token (session :__anti-forgery-token)
-                                      :errors {}}))
+  (layout/render "registration.html" (layout/default-params session {})))
 
 (defn handle-registration [{params :form-params
                             session :session}]
@@ -15,10 +13,8 @@
     (if (empty? (result :data-errors))
       (assoc (ring/redirect-after-post "/")
               :session {:user-id (get-in result [:data :id])})
-      (layout/render
-        "registration.html" {:id (params "id" "")
-                             :csrf-token (session :__anti-forgery-token)
-                             :errors (result :data-errors)}))))
+      (layout/render "registration.html"
+                     (layout/default-params session result)))))
 
 (defn handle-login [{params :form-params}]
   (let [result (auth-user/perform params)]

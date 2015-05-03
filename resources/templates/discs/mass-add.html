@@ -1,29 +1,22 @@
 {% extends "templates/base.html" %}
 {% block content %}
   <h2>Add a disc to collection</h2>
-  <form action="/discs" method="POST">
+  <form action="/discs/mass" method="POST">
     <input type="hidden" name="__anti-forgery-token" value="{{csrf-token}}" />
     <div class="form-group col-lg-3">
-      <label for="id">Title</label>
-      {% if errors.title %}
-        <div class="alert alert-danger">{{errors.title}}</div>
+      <label for="discs">Discs to add</label>
+      <p>Artist name, Album name</p>
+      {% if errors.discs %}
+        <div class="alert alert-danger">{{errors.discs}}</div>
       {% endif %}
       <p>
-        <input class="form-control" id="title" name="title"
-               tabindex="1" type="text" value="{{data.title}}" />
+        <textarea class="form-control" id="discs" name="discs"
+               tabindex="1" value="{{data.discs}}"></textarea>
       </p>
-      <label for="id">Artist</label>
-      {% if errors.artist %}
-        <div class="alert alert-danger">{{errors.artist}}</div>
-      {% endif %}
-      <p>
-        <input class="form-control" id="artist" name="artist"
-               tabindex="1" type="text" value="{{data.artist}}" />
-      </p>
+      <label for="state">State</label>
       {% if errors.state %}
         <div class="alert alert-danger">{{errors.state}}</div>
       {% endif %}
-      <label for="state">State</label>
       <p>
         <select name="state" id="state">
           <option value="have">I have it</option>
@@ -35,3 +28,4 @@
     </div>
   </form>
 {% endblock %}
+

@@ -2,12 +2,10 @@
   (:require [cdlib.web.layout :as layout]))
 
 (defn home-page [{session :session}]
-  (layout/render
-    "home.html" {:user-id (session :user-id)
-                 :csrf-token (session :__anti-forgery-token)}))
+  (layout/render "home.html" (layout/default-params session {})))
 
 (defn about-page [{session :session}]
-  (layout/render "about.html" {:user-id (session :user-id)}))
+  (layout/render "about.html" (layout/default-params session {})))
 
 (def home-routes
   {[:get "/"] home-page

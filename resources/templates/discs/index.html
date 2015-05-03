@@ -2,20 +2,30 @@
 {% block content %}
   <h2>My collection</h2>
   <table class="discs table">
-    <tr><th>State</th><th>Title</th><th>Artist</th></tr>
-    {% for disc in collection %}
-      <tr class="disc--{{disc.state}}"><td>
-          {% ifequal disc.state "have" %}
-          I have it
-          {% else %}
-            {% ifequal disc.state "want" %}
-            I want it
+    <thead>
+      <tr><th>State</th><th>Title</th><th>Artist</th></tr>
+    </thead>
+    <tbody>
+      {% for disc in data.discs %}
+        <tr class="disc--{{disc.state}}"><td>
+            {% ifequal disc.state "have" %}
+            I have it
             {% else %}
-            I don't want it
+              {% ifequal disc.state "want" %}
+              I want it
+              {% else %}
+              I don't want it
+              {% endifequal %}
             {% endifequal %}
-          {% endifequal %}
-      </td><td>{{disc.title}}</td><td>{{disc.artist}}</td></tr>
-    {% endfor %}
+        </td>
+        <td>{{disc.title}}</td>
+        <td><a href="/artists/{{disc.artist_id}}">{{disc.artist_name}}</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
   </table>
-  <a href="/discs/new">Add</a>
+  <ul>
+    <li><a href="/discs/new">Add one</a></li>
+    <li><a href="/discs/mass">Mass add</a></li>
+  </ul>
 {% endblock %}
