@@ -1,29 +1,9 @@
 {% extends "templates/base.html" %}
 {% block content %}
   <h2>My collection</h2>
-  <table class="discs table">
-    <thead>
-      <tr><th>State</th><th>Title</th><th>Artist</th></tr>
-    </thead>
-    <tbody>
-      {% for disc in data.discs %}
-        <tr class="disc--{{disc.state}}"><td>
-            {% ifequal disc.state "have" %}
-            I have it
-            {% else %}
-              {% ifequal disc.state "want" %}
-              I want it
-              {% else %}
-              I don't want it
-              {% endifequal %}
-            {% endifequal %}
-        </td>
-        <td>{{disc.title}}</td>
-        <td><a href="/artists/{{disc.artist_id}}">{{disc.artist_name}}</a></td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+
+  {% include "templates/discs/_disc-list.html" %}
+
   <ul>
     <li><a href="/discs/new">Add one</a></li>
     <li><a href="/discs/mass">Mass add</a></li>

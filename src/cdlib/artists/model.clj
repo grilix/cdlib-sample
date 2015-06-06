@@ -2,6 +2,10 @@
   (:require [korma.core :as db]
             [db.core]))
 
+(defn find [id]
+  (first (db/select :artists
+                    (db/where {:id id}))))
+
 (defn fetch [name]
   (first (db/select :artists
                     (db/where {:name name}))))

@@ -1,0 +1,12 @@
+{% extends "templates/base.html" %}
+{% block content %}
+  <h2>My collection for {{data.artist.name}}</h2>
+
+  {% include "templates/discs/_disc-list.html" %}
+
+  <ul>
+    <li><a href="/artists/{{data.artist-id}}/new">Add one</a></li>
+    <li><a href="/discs">Full collection</a></li>
+  </ul>
+{% endblock %}
+

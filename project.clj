@@ -15,4 +15,5 @@
                  [ragtime "0.3.7"]]
   :repl-options {:init-ns cdlib.repl}
   :plugins [[lein-ring "0.8.13"] [ragtime/ragtime.lein "0.3.7"]]
-  :ring {:handler cdlib.web.handler/app})
+  :ring {:init db.migrations/migrate
+         :handler cdlib.web.handler/app})
