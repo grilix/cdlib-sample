@@ -24,7 +24,7 @@
     (assoc-in data [:data :discs] (db/get-user-artist-discs user-id artist-id))))
 
 (defn- get-artist [data]
-  (let [result (artists/find (get-in data [:data :artist-id]))]
+  (let [result (artists/find_by_id (get-in data [:data :artist-id]))]
     (println result)
     (assoc-in data [:data :artist] result)))
 

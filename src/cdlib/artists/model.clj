@@ -2,7 +2,7 @@
   (:require [korma.core :as db]
             [db.core]))
 
-(defn find [id]
+(defn find_by_id [id]
   (first (db/select :artists
                     (db/where {:id id}))))
 
